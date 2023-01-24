@@ -1,25 +1,20 @@
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
+import {checkWinner} from './logic/board'
 import './App.css';
 
-
-type Token = null|boolean
+type Token = null | boolean;
 function App() {
-  const [board, setBoard] = useState(Array.from({ length: 42 }).fill(null));
+  const [board, setBoard] = useState< Array<Token> >(Array.from({ length: 42 }).fill(null));
   // const [board, setBoard] = useState(initialState);
   // turn true is for token 1 and false for token 2
   const [turn, setTurn] = useState(true);
   const [winner, setWinner] = useState<null | boolean>(null);
 
-  const checkWinner = (currentBoard:Token[]) => {
-    for (const iterator of object) {
-      
-    }
-  };
+  
   const clickCellToken = (i: number) => {
-    if (board[i] !== null) return;
+    if (board[i] !== null || winner) return;
     const newBoard = [...board];
-    console.log(i);
     let cell;
     if (newBoard[i + 5 * 7] === null) cell = i + 5 * 7;
     else if (newBoard[i + 4 * 7] === null) cell = i + 4 * 7;
@@ -28,10 +23,10 @@ function App() {
     else if (newBoard[i + 7] === null) cell = i + 7;
     else cell = i;
 
-    console.log({ cell });
     newBoard[cell] = turn;
     setBoard(newBoard);
     setTurn((prev) => !prev);
+    checkWinner(newBoard)
   };
   const resetBoard = () => {
     setBoard(Array.from({ length: 42 }).fill(null));
