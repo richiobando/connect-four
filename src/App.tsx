@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import WinnerModal from './components/WinnerModal';
-import {emptyBoard, checkWinner} from './logic/board'
+import {board as makeBoard, checkWinner} from './logic/board'
 import './App.css';
 export type Players = 1|2
 const players = {
@@ -10,7 +10,7 @@ const players = {
 }
 export type Token = null | Players | unknown;
 function App() {
-  const [board, setBoard] = useState < Token[][] >(emptyBoard());
+  const [board, setBoard] = useState < Token[][] >(makeBoard());
   const [turn, setTurn] = useState(players.one);
   const [winner, setWinner] = useState<Token>(null);
 
@@ -37,7 +37,7 @@ function App() {
   };
 
   const resetBoard = () => {
-    setBoard(emptyBoard());
+    setBoard(makeBoard([ 0,1, 2, 3],[0]));
     setTurn(players.one)
     setWinner(null)
   };
@@ -69,64 +69,5 @@ function App() {
     </main>
   );
 }
-
-/* 
-[
-    [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-    ],
-    [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-    ],
-    [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-    ],
-    [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-    ],
-    [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-    ],
-    [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-    ]
-]
-*/
 
 export default App;
