@@ -1,28 +1,59 @@
-.App{
+.App {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100vw;
 }
-.board{
+.board {
+  margin: 1rem;
   display: grid;
-  grid-template-columns: repeat(7,1fr);
+  grid-template-columns: repeat(7, 1fr);
   border: 1px solid #fff;
-  width: 500px;
+  gap: 10px;
+  padding: 10px;
+  padding-top: 30px;
 }
-.cell{
+
+.cell {
   background: #000;
   border-radius: 50%;
   width: 50px;
   height: 50px;
-
   border: 1px solid #fff;
 }
-.token1{
+
+.token1 {
   border-radius: 50%;
   background: #f00;
 }
-.token2{
+
+.token2 {
   border-radius: 50%;
   background: #00f;
+}
+.winnerModal{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;left: 0;
+  display: grid;
+  place-items:center;
+  background-color: rgba(204, 204, 204, 0.426);
+}
+.winnerModal div{
+background: #111;
+height: 300px;
+width: 320px;
+border: 2px solid #eee;
+border-radius: 10px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 20px;
+}
+.winnerModal div button{
+  background: #777;
+
 }
