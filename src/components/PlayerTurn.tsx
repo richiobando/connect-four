@@ -1,7 +1,7 @@
 import React from "react";
 import { PlayersTypes, players} from '../constants';
 type Props = {
-  token: PlayersTypes
+  token: number
 };
 
 export default function PlayerTurn({ token }: Props) {
