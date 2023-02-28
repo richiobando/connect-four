@@ -1,18 +1,22 @@
 import React from 'react';
 import { Token } from '../App';
+import PlayerTurn from './PlayerTurn';
 type Props = {
   reset: () => void;
-  winner: Token;
+  token: Token;
 };
 
-export default function WinnerModal({ winner, reset }: Props) {
-  if (winner === null) return null;
-  const text = winner === false ? 'Draw' : 'You Win';
+export default function tokenModal({ token, reset }: Props) {
+  console.log({token});
+  
+  if (token === null) return null;
+  const text = token === false ? 'Draw' : 'You Win';
   return (
     <section className='winnerModal'>
-      <div>
-        <h2>{text}</h2>
-        {/* <header>{winner && <p>{winner}</p>}</header> */}
+      <div className='winner-container'>
+        {/* <h2>{text}</h2> */}
+        <h2>Win</h2>
+        <PlayerTurn token={token} />
         <footer>
           <button onClick={reset}>Reset the Game</button>
         </footer>
