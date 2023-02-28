@@ -41,7 +41,7 @@
   place-items:center;
   background-color: rgba(204, 204, 204, 0.426);
 }
-.winnerModal div{
+.winner-container{
 background: #111;
 height: 300px;
 width: 320px;
@@ -56,4 +56,9 @@ gap: 20px;
 .winnerModal div button{
   background: #777;
 
+}
+.header{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
