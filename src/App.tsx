@@ -15,11 +15,7 @@ function App() {
 
   
   const clickCellToken = (c: number, r: number) => {
-    console.log({board});
-    
     if (board[c][r] !== null || winner) return;
-    console.log('in game');
-    
     const newBoard = [...board];
     // token goes down 
     if (newBoard[c][r+5] === null)   r +=5;
@@ -28,8 +24,7 @@ function App() {
     else if (newBoard[c][r+2] === null)   r +=2;
     if (newBoard[c][r+1] === null)   r +=1; 
     newBoard[c][r] = turn;
-    
-    console.log({r},{c});
+
     setBoard(newBoard);
     const changeTurn = turn === players.one ? players.two:players.one
     setTurn(changeTurn);
@@ -43,9 +38,7 @@ function App() {
     setBoard( makeLine(empty,[1], [0, 1, 2, 3]));
     setTurn(players.one)
   };
-  // TODO if down cell is empty fill down cell except the last in the column making tokens
 
-  // TODO win condition
   return (
     <main className='App'>
       <PlayerTurn token={turn}/>
