@@ -3,14 +3,13 @@ import reactLogo from './assets/react.svg';
 import WinnerModal from './components/WinnerModal';
 import {emptyBoard,makeLine, hasWinner} from './logic/board'
 import './App.css';
-export type Players = 1|2
-const players = {
-  one:1,
-  two:2
-}
-export type Token = null | Players | unknown;
+import PlayerTurn from './components/PlayerTurn';
+
+import { players, PlayersTypes } from './constants';
+
+export type Token = null | PlayersTypes | unknown;
 function App() {
-  const [board, setBoard] = useState < Token[][] >(emptyBoard());
+  const [board, setBoard] = useState<Token[][]>(emptyBoard());
   const [turn, setTurn] = useState(players.one);
   const [winner, setWinner] = useState<Token>(null);
 
@@ -34,14 +33,14 @@ function App() {
     setBoard(newBoard);
     const changeTurn = turn === players.one ? players.two:players.one
     setTurn(changeTurn);
-    const newWinner: boolean | null = hasWinner(newBoard)
+    const newWinner: Token = hasWinner(newBoard)
     if (newWinner) setWinner(newWinner)
   };
 
   const resetBoard = () => {
     const empty=emptyBoard()
     setWinner(null)
-    setBoard(empty);
+    setBoard( makeLine(empty,[1], [0, 1, 2, 3]));
     setTurn(players.one)
   };
   // TODO if down cell is empty fill down cell except the last in the column making tokens
@@ -49,8 +48,8 @@ function App() {
   // TODO win condition
   return (
     <main className='App'>
+      <PlayerTurn token={turn}/>
       <div className='board'>
-{/* {console.log(board)} */}
       {board.map((row, r) => (
         <div key={r} >
             {row.map((col, c) => (
@@ -65,7 +64,7 @@ function App() {
         ))}
       </div>
         <button onClick={resetBoard}>Reset</button>
-      <WinnerModal reset={resetBoard } winner={winner}/>
+      <WinnerModal reset={resetBoard } token={winner}/>
     </main>
   );
 }
