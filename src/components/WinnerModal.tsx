@@ -7,14 +7,11 @@ type Props = {
 };
 
 export default function tokenModal({ token, reset }: Props) {
-  console.log({token});
-  
   if (token === null) return null;
   const text = token === false ? 'Draw' : 'You Win';
   return (
     <section className='winnerModal'>
       <div className='winner-container'>
-        {/* <h2>{text}</h2> */}
         <h2>Win</h2>
         <PlayerTurn token={token} />
         <footer>

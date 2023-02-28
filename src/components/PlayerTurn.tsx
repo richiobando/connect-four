@@ -1,7 +1,8 @@
 import React from "react";
-import { PlayersTypes, players} from '../constants';
+import { PlayersTypes, players } from '../constants';
+import { Token } from '../App';
 type Props = {
-  token: number
+  token: Token | PlayersTypes
 };
 
 export default function PlayerTurn({ token }: Props) {
