@@ -18,12 +18,11 @@ export const makeLine = (
   chosenCells: number[] = [],
   player: number = 1
 ) => {
-  for (let c = 0; c < columns; c++) {
-    for (let r = 0; r < rows; r++) {
+  
+  for (let c = 0; c < chosenCells.length; c++) {
+    for (let r = 0; r < chosenRows.length; r++) {
       if (chosenRows && chosenRows.includes(r)) {
-        // if (chosenCells && chosenCells.includes(c)) tempRow.push(player)
         if (chosenCells && chosenCells.includes(c)) board[c][r] = chosenCells[0]
-        // else tempRow.push(null)
         else board[c][r] = chosenCells[0]
       } else 
       board[c][r] = chosenCells[0]
@@ -44,7 +43,7 @@ export const hasWinner = (currentBoard: Token[][]) => {
         currentBoard[c][r] === currentBoard[c][r + 3]
       ) {
         console.log('verticals')
-        return true
+        return currentBoard[c][r]
       }
     }
   }
@@ -58,7 +57,7 @@ export const hasWinner = (currentBoard: Token[][]) => {
         currentBoard[c][r] === currentBoard[c + 3][r]
       ) {
         console.log('horizontals')
-        return true
+        return currentBoard[c][r] 
       }
     }
   }
@@ -72,7 +71,7 @@ export const hasWinner = (currentBoard: Token[][]) => {
         currentBoard[c][r] === currentBoard[c - 3][r - 3]
       ) {
         console.log('diag down')
-        return true
+        return currentBoard[c][r] 
       }
     }
   }
@@ -86,7 +85,7 @@ export const hasWinner = (currentBoard: Token[][]) => {
         currentBoard[c][r] === currentBoard[c + 3][r - 3]
         ) {
         console.log('diag up')
-        return true
+        return currentBoard[c][r] 
       }
     }
   }
