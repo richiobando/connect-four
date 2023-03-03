@@ -11,8 +11,8 @@ export default function PlayerTurn({ token }: Props) {
       <h2>Player 1</h2>
       <div className={`cell token1`}></div>
     </div>)
-    : token === 2?(<>
+    : token === 2?(<div className='header'>
       <h2>Player 2</h2>
       <div className={`cell token2`}></div>
-    </>):null}</div>;
+    </div>):null}</div>;
 }
